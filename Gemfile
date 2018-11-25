@@ -10,7 +10,6 @@ gem 'activerecord-session_store'
 gem "authlogic", "4.4.2"
 gem 'authlogic-oid'
 gem "composite_primary_keys"
-gem "danger"
 gem 'figaro'
 gem 'friendly_id'
 gem 'gemoji'
