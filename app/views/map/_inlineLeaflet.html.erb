@@ -1,14 +1,9 @@
-<%= render :partial => "map/mapDependencies" %>
-
 <% unique_id = rand(1000) %>
 
   <style>
     #map<%= unique_id %> { width:100%; height:300px; margin: 0; position: relative;}
     #postOnMap<%= unique_id %> {
       margin-top: 5px;
-    }
-    .leaflet-popup-content {
-      width: auto !important;
     }
     a.grid-embed {
       float:right;
@@ -19,7 +14,7 @@
     }
   </style>
 
-  <div class="leaflet-map inline-fullwidth-content" id="map<%= unique_id %>"></div>
+  <div class="leaflet-map inline-map inline-fullwidth-content" id="map<%= unique_id %>"></div>
 
   <a id="iframeID<%= unique_id %>" class="grid-embed" rel="tooltip" title="Embed this map on another site."><i class="fa fa-code" style="color:#aaa;"></i></a>
 
@@ -35,6 +30,7 @@
       maxBounds: bounds ,
       maxBoundsViscosity: 0.75,
       fullscreenControl: true,
+      scrollWheelZoom: false,
       fullscreenControlOptions: {
         position: 'topleft'
     }}).setView([<%= lat %>,<%= lon %>], <%= lat.to_s.length.to_i %> + 6);
@@ -57,8 +53,13 @@
 
     $("#iframeID<%= unique_id %>").click(function() {
       prompt('Use this HTML code to embed this map on another site.', '<iframe style="border:none;" width="100%" height="900px" src="' + "//publiclab.org/map/" + primary_layers<%= unique_id %> + "#lat=<%= lat %>&lon=<%= lon %>&zoom=6" + '"></iframe>')
-      });
+    });
 
-    setupInlineLEL(map<%= unique_id %> , primary_layers<%= unique_id %>, main_layer<%= unique_id %>, markers_hash<%= unique_id %>) ;
+    var options<%= unique_id %> = {
+      mainContent: main_layer<%= unique_id %>,
+      layers: primary_layers<%= unique_id %>,
+      setHash: false
+    }
+    setupLEL(map<%= unique_id %>, markers_hash<%= unique_id %>, options<%= unique_id %>);
 
 </script>

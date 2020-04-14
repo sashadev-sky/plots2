@@ -117,7 +117,7 @@ class UserSessionsController < ApplicationController
 
   def handle_site_login_flow
     username = params[:user_session][:username] if params[:user_session]
-    u = User.find_by(username: username)
+    u = User.find_by(username: username) || User.find_by(email: username)
     if u && u.password_checker != 0
       n = u.password_checker
       hash = { 1 => "Facebook", 2 => "Github", 3 => "Google", 4 => "Twitter"  }
@@ -209,7 +209,7 @@ class UserSessionsController < ApplicationController
 
   def destroy
     @user_session = UserSession.find
-    @user_session.destroy
+    @user_session&.destroy
     flash[:notice] = I18n.t('user_sessions_controller.logged_out')
     prev_uri = URI(request.referer || "").path
     redirect_to prev_uri + '?_=' + Time.current.to_i.to_s

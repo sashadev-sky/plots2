@@ -12,12 +12,13 @@
     "cms",
     "publiclab"
   ],
-  "author": "Public Lab",
+  "author": "Public Lab <web@publiclab.org> (https://publiclab.org)",
   "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/publiclab/plots2/issues"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.12.1",
     "blob.js": "^1.0.1",
     "blueimp-file-upload": "blueimp/jQuery-File-Upload#^10.7.0",
     "bootstrap": "4.1.0",
@@ -41,8 +42,8 @@
     "jsdiff": "components/jsdiff#~3.4.0",
     "junction": "theleagueof/junction#*",
     "leaflet": "^1.6.0",
-    "leaflet-blurred-location": "^1.6.0",
-    "leaflet-environmental-layers": "^2.1.7",
+    "leaflet-blurred-location": "^1.7.0",
+    "leaflet-environmental-layers": "^2.2.1",
     "leaflet-hash": "^0.2.1",
     "leaflet-spin": "1.1.0",
     "leaflet.fullscreen": "1.6.0",
@@ -51,7 +52,7 @@
     "moment": "~> 2.24.0",
     "noty": "3.1.4",
     "phantomjs-prebuilt": "^2.1.16",
-    "popper.js": "^1.16.0",
+    "popper.js": "^1.16.1",
     "publiclab-editor": "^2.0.5",
     "short-code-forms": "jywarren/short-code-forms#~0.0.1",
     "simple-data-grapher": "^2.0.0",

@@ -91,6 +91,18 @@ class Comment < ApplicationRecord
     aid.zero? ? node : answer&.node
   end
 
+  def status_value
+    if status == 0
+      'Banned'
+    elsif status == 1
+      'Normal'
+    elsif status == 4
+      'Moderated'
+    else
+      'Not Defined'
+    end
+  end
+
   def mentioned_users
     usernames = comment.scan(Callouts.const_get(:FINDER))
     User.where(username: usernames.map { |m| m[1] }).distinct
@@ -127,7 +139,7 @@ class Comment < ApplicationRecord
   # plus all who've starred it
   def notify(current_user)
     if status == 4
-      AdminMailer.notify_comment_moderators(self).deliver_now
+      AdminMailer.notify_comment_moderators(self).deliver_later!(wait_until: 24.hours.from_now)
     else
       if parent.uid != current_user.uid && !UserTag.exists?(parent.uid, 'notify-comment-direct:false')
         CommentMailer.notify_note_author(parent.author, self).deliver_now
