@@ -30,7 +30,7 @@ gem 'jbuilder', '~> 2.10'
 gem 'jquery-rails'
 gem 'less-rails', '~> 4.0'
 gem 'mocha', '~> 1.11'
-gem 'mustermann' , '1.0.3'
+gem 'mustermann' , '1.1.1'
 gem 'omniauth', '~> 1.9'
 gem 'omniauth-facebook', '~> 6.0'
 gem 'omniauth-github', '~> 1.4'
@@ -52,7 +52,7 @@ gem 'rb-readline'
 gem 'rdiscount', '~> 2.2', '>= 2.2.0.1'
 gem "recaptcha", require: "recaptcha/rails"
 gem 'responders', '~> 3.0'
-gem 'rubocop', '~> 0.79.0', require: false
+gem 'rubocop', '~> 0.83.0', require: false
 gem "ruby-openid", :require => "openid"
 gem 'sanitize'
 gem 'sentry-raven'
