@@ -191,7 +191,7 @@ class TagControllerTest < ActionController::TestCase
     end
 
     # assert_equal assigns['tags'].length, 1
-    assert_select '#wiki-content', 1
+    assert_select '#wiki-summary', 1
   end
 
   test 'show page for non-existent tag' do
@@ -253,6 +253,8 @@ class TagControllerTest < ActionController::TestCase
     assert :wikis
     assert assigns(:wikis).length > 0
 
+    selector = css_select '#wikis table tr'
+    assert_equal selector.size, 2
     assert_select '#note-graph', 0
   end
 
@@ -309,7 +311,7 @@ class TagControllerTest < ActionController::TestCase
 
     get :show, params: { id: nodes(:organizers).slug }
 
-    assert_select '#wiki-content', 1
+    assert_select '#wiki-summary', 1
   end
 
   test 'show note with author and tagname without wildcard' do
@@ -520,7 +522,7 @@ class TagControllerTest < ActionController::TestCase
     get :suggested, params: { id: 'spectr' }
 
     assert_equal 4, assigns(:suggestions).length
-    assert_equal ['question:spectrometer', 'spectrometer', 'activity:spectrometer', 'activities:spectrometer'], JSON.parse(response.body)
+    assert_equal ['question:spectrometer', 'spectrometer', 'activity:spectrometer', 'activities:spectrometer'].sort, JSON.parse(response.body).sort
   end
 
   test 'should choose I18n for tag controller' do

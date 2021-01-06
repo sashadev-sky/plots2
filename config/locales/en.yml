@@ -162,7 +162,11 @@ en:
       recent: "Recent"
       popular: "Popular"
       liked: "Liked"
-      wiki_pages: "Wiki<span class=\"hidden-sm\"> pages</span>"
+      wiki_pages: "Wiki pages"
+      research_notes: "Research Notes"
+      questions: "Questions"
+      comments: "Comments"
+      all_notes: "All Notes"
     _notes:
       moderate_first_time_post: "Moderate first-time post:"
       approve: "Approve"
@@ -200,6 +204,8 @@ en:
       ical: "iCal"
       login_to: "Please <a href='%{url1}'>log in</a> to"
       people_will_attend: "%{count} people will attend"
+      preview: "You are currently viewing a preview."
+      preview_topics: "This preview is not yet published and is not part of any topics yet."
     _comments:
       comments: "Comments"
       post_comment: "Post comment"
@@ -256,7 +262,7 @@ en:
           and <b>%{comments_count} comments </b>  posted in this period.
       members_and_contributors: |
           <b>%{member_count}  member registrations</b>
-          and <b>%{people_count}  contributors </b> posted in this period.
+          and <b>%{people_count}  contributors </b> posted notes, wikis, questions, comments, or revisions in this period.
 
   dashboard:
     _node_comment:
@@ -337,6 +343,8 @@ en:
       first_time_post: "Moderate first-time post:"
     _comment_moderate:
       first_time_post: "Moderate first-time comment:"
+  dashboard_v2:
+    view: "This is the dashboard redesign page"
   like:
     index:
       recent_likes: "Recent Likes"
@@ -355,6 +363,7 @@ en:
       unfollow: "Click to unfollow"
       follow: "Follow"
       no_results: "No results found; try searching for '%{search}'"
+      no_recent_posts: "There are no recent posts"
       advanced_search: "Or try an <a href='%{url}'>advanced search</a>"
       by: "by"
       views: "views"
@@ -369,7 +378,7 @@ en:
       number_of_subscriptions: "# of people"
       subscriptions: "Your subscriptions"
       sort_by: "Sort By"
-      more_posts: "more posts"
+      posts: "posts"
       follow: "Follow"
       unfollow: "Unfollow"
       notes:
@@ -392,9 +401,9 @@ en:
       or_subscribe_to_answer: "<a style='margin-bottom:6px;' class='btn btn-primary
         requireLogin' target='_blank' href='%{url1}'>Subscribe to answer questions
         on this topic</a>"
-      research_notes: "<span class=\"hidden-sm\">Research </span>Notes"
+      research_notes: "Research notes"
       questions: "Questions"
-      wiki_pages: "Wiki<span class=\"hidden-sm\"> pages</span>"
+      wiki_pages: "Wiki pages"
       maps: "Maps"
       no_results_found: "No results found; try searching for '<b>%{tag}</b>'"
       try_advanced_search: "Or try an <a href='%{url1}'>advanced search</a>"
@@ -414,7 +423,7 @@ en:
       no_contributors_listed: "No contributors are listed."
       write_research_note: "Write a research note"
     _tagging:
-      enter_tags: "enter tags"
+      enter_tags: "Enter tags"
     contributors:
       contributors_for: "Contributors for <i style=\"color:#aaa;\">%{tag_name}</i>"
       contributions_over_past_year: "Above: contributions over the past year."
@@ -471,7 +480,7 @@ en:
       back_to_wiki: "Back to <a href='%{url1}'>%{title}"
       overview: "Overview"
       research: "Research"
-      wiki_pages: "Wiki<span class=\"hidden-sm\"> pages</span>"
+      wiki_pages: "Wiki pages"
       more_research: "More research on \"%{tag}\""
       more_tag_research: "More \"%{tag}\" research"
     _wikis:
@@ -550,6 +559,23 @@ en:
         fellows: "Fellows"
         lending_library: "Lending Library"
       search: "Search on Public Lab"
+      community:
+        community_title: "Community"
+        get_started: "Get Started"
+        people: "People"
+        places: "Places"
+        projects: "Projects"
+        events: "Events"
+        questions: "Questions"
+        chat: "Chat"
+      tools:
+        tools_title: "Tools"
+        methods: "Methods"
+        kits_initiative: "Kits Initiative"
+        store: "Store"
+        map_knitter: "Map Knitter"
+        spectral_workbench: "Spectral Workbench"
+        code_community: "Code Community"
       about:
         about_title: "About us"
         stories: "Stories"
@@ -618,7 +644,7 @@ en:
       username: "Username"
       password: "Password"
       remember_me: "Remember me"
-      reset_by_clicking_here: "Forgot your password? Reset it <a href='%{url1}'>here</a>"
+      reset_by_clicking_here: "Forgot your password? <a href='%{url1}'>Reset it here</a>"
   home:
     dashboard:
       welcome: "Welcome!"
@@ -659,7 +685,7 @@ en:
       all: "all"
       notes: "notes"
       receive_mails: "Receive emails for all research notes."
-      enter_tags: "enter tags"
+      enter_tags: "Enter tags"
       add: "Add"
       tag: "Tag"
       options: "Options"

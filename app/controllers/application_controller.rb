@@ -1,4 +1,5 @@
 include ActionView::Helpers::DateHelper # required for time_ago_in_words()
+include Pagy::Backend
 class ApplicationController < ActionController::Base
   protect_from_forgery unless: -> { is_dataurl_post }
   layout 'application'
@@ -37,13 +38,13 @@ class ApplicationController < ActionController::Base
       @maps = Tag.find_nodes_by_type(data, 'map', 20)
     else # type is generic
       # remove "classroom" postings; also switch to an EXCEPT operator in sql, see https://github.com/publiclab/plots2/issues/375
-      hidden_nids = Node.where(type: :note, status: 1).select { |n| n.has_a_tag('hidden:response') }.collect(&:nid)
+      hidden_nids = Node.hidden_response_node_ids
       @notes = if params[:controller] == 'questions'
                  Node.questions
                    .joins(:revision)
                else
                  Node.research_notes.joins(:revision).order('node.nid DESC').paginate(page: params[:page])
-      end
+               end
 
       @notes = @notes.where('node.nid != (?)', @node.nid) if @node
       @notes = @notes.where('node_revisions.status = 1 AND node.nid NOT IN (?)', hidden_nids) unless hidden_nids.empty?
@@ -156,7 +157,7 @@ class ApplicationController < ActionController::Base
       flash.now[:warning] = "This is a draft note. Once you're ready, click <a class='btn btn-success btn-xs' href='/notes/publish_draft/#{@node.id}'>Publish Draft</a> to make it public. You can share it with collaborators using this private link <a href='#{@node.draft_url(request.base_url)}'>#{@node.draft_url(request.base_url)}</a>"
     elsif @node.status == 3 && (params[:token].nil? || (params[:token].present? && @node.slug.split('token:').last != params[:token]))
       page_not_found
-    elsif @node.status != 1 && @node.status != 3 && !(logged_in_as(['admin', 'moderator']))
+    elsif @node.status != 1 && @node.status != 3 && current_user&.id != @node.author.id && !(logged_in_as(['admin', 'moderator']))
       # if it's spam or a draft
       # no notification; don't let people easily fish for existing draft titles; we should try to 404 it
       redirect_to '/'
@@ -201,7 +202,7 @@ class ApplicationController < ActionController::Base
     render file: "#{Rails.root}/public/404.html", layout: false, status: :not_found
   end
 
-  # TODO: make less redundant with https://github.com/publiclab/plots2/blob/master/app/helpers/application_helper.rb#L3
+  # TODO: make less redundant with https://github.com/publiclab/plots2/blob/main/app/helpers/application_helper.rb#L3
   def logged_in_as(roles)
     return false unless current_user
 
